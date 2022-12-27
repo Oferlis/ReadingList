@@ -15,7 +15,6 @@ const linksRouter = require('./routes/links.js')
 app.use('/links', linksRouter)
 
 app.listen(3000, () => console.log("Server is up"))
-console.log("DB state = " + db.readyState)
 
 
 
