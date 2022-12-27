@@ -1,0 +1,12 @@
+GET http://localhost:3000/links
+
+###
+GET http://localhost:3000/links/19
+
+###
+POST http://localhost:3000/links
+Content-Type: application/json
+{
+    "name" : "test",
+    "link": "www.ynet.co.il"
+}
