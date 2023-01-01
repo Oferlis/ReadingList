@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+const getTitle = require('get-url-title')
 const express = require('express')
 const res = require('express/lib/response')
 const router = express.Router()
@@ -20,8 +22,9 @@ router.get('/:id',getLink, (req, res) => {
 
 //Creating one 
 router.post('/', async (req, res) => {
+    const linkTitle =await getTitle(req.body.link)
     const link = new Link({
-        name: req.body.name,
+        name: linkTitle,
         link: req.body.link,
     })
     try {
