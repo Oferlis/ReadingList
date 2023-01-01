@@ -1,12 +1,27 @@
 GET http://localhost:3000/links
 
 ###
-GET http://localhost:3000/links/19
+GET http://localhost:3000/links/63ab2747b11bdb68f8ee4edd
 
 ###
 POST http://localhost:3000/links
 Content-Type: application/json
+
 {
     "name" : "test",
-    "link": "www.ynet.co.il"
+    "link": "https://www.ynet.co.il/home/0,7340,L-8,00.html"
 }
+
+###
+DELETE http://localhost:3000/links/63ab2747b11bdb68f8ee4edd
+
+###
+PATCH http://localhost:3000/links/63ab271eb11bdb68f8ee4eda
+Content-Type: application/json
+
+{
+    "name": "changedddd"
+}
+
+### 
+GET https://mongoosejs.com/docs/index.html
