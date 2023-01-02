@@ -13,6 +13,10 @@ const linkSchema = new mongoose.Schema({
     link: {
         type: String,
         required: true
+    },
+    isRead: {
+        type: Boolean,
+        default: false
     }
 })
 

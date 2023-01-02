@@ -1,27 +1,30 @@
-GET http://localhost:3000/links
+GET http://localhost:3001/links
 
 ###
-GET http://localhost:3000/links/63ab2747b11bdb68f8ee4edd
+GET http://localhost:3001/links/63ab271eb11bdb68f8ee4eda
 
 ###
-POST http://localhost:3000/links
+POST http://localhost:3001/links
 Content-Type: application/json
 
 {
     "name" : "test",
-    "link": "https://www.ynet.co.il/home/0,7340,L-8,00.html"
+    "link": "https://www.npmjs.com/package/get-url-title"
 }
 
 ###
-DELETE http://localhost:3000/links/63ab2747b11bdb68f8ee4edd
+DELETE http://localhost:3001/links/63ab2747b11bdb68f8ee4edd
 
 ###
-PATCH http://localhost:3000/links/63ab271eb11bdb68f8ee4eda
+PATCH http://localhost:3001/links/63ab271eb11bdb68f8ee4eda
 Content-Type: application/json
 
 {
-    "name": "changedddd"
+    "isRead": true
 }
 
 ### 
 GET https://mongoosejs.com/docs/index.html
+
+
+blabla

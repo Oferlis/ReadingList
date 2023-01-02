@@ -14,7 +14,7 @@ app.use(express.json())
 const linksRouter = require('./routes/links.js')
 app.use('/links', linksRouter)
 
-app.listen(3000, () => console.log("Server is up"))
+app.listen(3001, () => console.log("Server is up"))
 
 
 
