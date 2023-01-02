@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     try {
         const links = await Link.find()
         res.json(links)
+        //res.json({message: "blabla"})
     } catch (error) {
         res.status(500).json({message: error.message})
     }
@@ -37,11 +38,8 @@ router.post('/', async (req, res) => {
 
 //Updating one
 router.patch('/:id', getLink, async (req, res) => {
-    if(req.body.name != null) {
-        res.link.name = req.body.name 
-    }
-    if(req.body.link != null) {
-        res.link.link = req.body.link
+    if(req.body.isRead != null) {
+        res.link.isRead = req.body.isRead 
     }
     try {
         const updatedLink = await res.link.save()
