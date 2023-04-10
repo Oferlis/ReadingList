@@ -6,5 +6,5 @@ and the app will get it to you when you want it! no more bookmarks and forgotten
 Project is built using NodeJS, Express, MongoDB, and React
 
 # Getting Started:
-npm start
+start both client and server - npm run dev 
 backend run on port 3001: go to http://localhost:3001/links to get full list of links
