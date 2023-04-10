@@ -4,3 +4,7 @@ Saw a link you would like to come back to? simply add the link to the ReadingLis
 and the app will get it to you when you want it! no more bookmarks and forgotten articles!
 
 Project is built using NodeJS, Express, MongoDB, and React
+
+# Getting Started:
+npm start
+backend run on port 3001: go to http://localhost:3001/links to get full list of links

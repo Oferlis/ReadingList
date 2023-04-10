@@ -8,7 +8,6 @@ POST http://localhost:3001/links
 Content-Type: application/json
 
 {
-    "name" : "test",
     "link": "https://www.npmjs.com/package/get-url-title"
 }
 
@@ -23,8 +22,5 @@ Content-Type: application/json
     "isRead": true
 }
 
-### 
-GET https://mongoosejs.com/docs/index.html
-
-
-blabla
+###
+GET http://localhost:3001/links/4/shuffle
