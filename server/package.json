@@ -1,9 +1,9 @@
 {
-  "name": "readinglist",
+  "name": "readinglist-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "backend": "npm start ./server",
     "start": "node server.js"
   },
   "author": "",
