@@ -60,6 +60,19 @@ router.delete('/:id', getLink, async (req, res) => {
     }
 })
 
+router.get('/:id/shuffle', async(req, res) => {
+    try {
+        link = await Link.find()
+        if (link == null) {
+            return res.status(404).json({message: "Could not find link"})
+        }
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+
+    res.link = link
+})
+
 async function getLink(req, res, next) {
     try {
         link = await Link.findById(req.params.id)
@@ -73,6 +86,8 @@ async function getLink(req, res, next) {
     res.link = link
     next()
 }
+
+
 
 module.exports = router
 
