@@ -75,7 +75,7 @@ function App() {
         <AddLink onAddLink={addListHandler} />
       </section>
       <section>
-        <button onClick={fetchLinkList}>Fetch Movies</button>
+        <button onClick={fetchLinkList}>Fetch Links</button>
       </section>
       <section>{content}</section>
     </React.Fragment>

@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/links/63ab2747b11bdb68f8ee4edd
+DELETE http://localhost:3001/links/6460eebce02018aca549b401
 
 ###
 PATCH http://localhost:3001/links/63ab271eb11bdb68f8ee4eda
@@ -24,3 +24,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/links/4/shuffle
+
+###
+POST http://localhost:3001/links
+Content-Type: application/json
+
+{
+    "link": "https://www.leetcode.com",
+    "title": "leetcode_tests"
+}
+
+###

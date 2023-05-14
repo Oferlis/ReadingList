@@ -23,7 +23,13 @@ router.get('/:id',getLink, (req, res) => {
 
 //Creating one 
 router.post('/', async (req, res) => {
-    const linkTitle =await getTitle(req.body.link)
+    var linkTitle = ""
+    if (!req.body.title) {
+        linkTitle = await getTitleWithTimeout(req.body.link)
+    }
+    else {
+        linkTitle = req.body.title;
+    }
     const link = new Link({
         name: linkTitle,
         link: req.body.link,
@@ -87,7 +93,25 @@ async function getLink(req, res, next) {
     next()
 }
 
-
+async function getTitleWithTimeout(link) {
+    var linkTitle = "";
+    const timeout = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject(new Error('Timeout'));
+        }, 500);
+      });
+      
+      const getTitlePromise = getTitle(link);
+      
+      try {
+        linkTitle = await Promise.race([getTitlePromise, timeout]);
+        // The promise resolved within the timeout period
+        // Handle the linkTitle here
+      } catch (error) {
+        linkTitle = "placeholder"
+      }
+      return linkTitle
+}
 
 module.exports = router
 
