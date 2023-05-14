@@ -6,7 +6,7 @@ const LinkList = (props) => {
         <ul>
             {props.links.map((link)=>(
                 <Link 
-                key={link.id}
+                id={link.id}
                 name={link.name}
                 link={link.link}/>
             ))}

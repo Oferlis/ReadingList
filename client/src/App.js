@@ -28,6 +28,7 @@ function App() {
       })
       
       setList(transformedList)
+      console.log(transformedList)
     }
     catch (error) {
       setError(error.message);
@@ -39,7 +40,7 @@ function App() {
     fetchLinkList();
   }, [fetchLinkList])
 
-  async function addListHandler(link) {
+  async function addListItemHandler(link) {
     const json_str = JSON.stringify(link)
     console.log(json_str)
     const response = await fetch('/links', {
@@ -52,7 +53,6 @@ function App() {
     if (!response.ok) {
       throw new Error('Could not POST data :(')
     }
-
   }
 
   let content = <p>Found no links.</p>;
@@ -72,7 +72,7 @@ function App() {
   return (
     <React.Fragment>
       <section>
-        <AddLink onAddLink={addListHandler} />
+        <AddLink onAddLink={addListItemHandler} />
       </section>
       <section>
         <button onClick={fetchLinkList}>Fetch Links</button>
