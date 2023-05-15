@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import AddLink from "./components/AddLink";
 import LinkList from "./components/LinkList";
 import "./App.css";
+import { fetchList } from "./helpers/requests";
 
 function App() {
   const [list, setList] = useState([{name: "wow"}]);
@@ -13,17 +14,14 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch("/links/");
-      if (!response.ok) {
-        throw new Error('Could not fetch data :(')
-      }
-      const data = await response.json();
+      const data = await fetchList()
 
       const transformedList = data.map((listData) => {
         return {
           id: listData._id,
           name: listData.name,
-          link: listData.link
+          link: listData.link,
+          isRead: listData.isRead,
         }
       })
       
@@ -42,7 +40,6 @@ function App() {
 
   async function addListItemHandler(link) {
     const json_str = JSON.stringify(link)
-    console.log(json_str)
     const response = await fetch('/links', {
       method: 'POST',
       body: json_str,
@@ -71,12 +68,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <section>
-        <AddLink onAddLink={addListItemHandler} />
-      </section>
-      <section>
-        <button onClick={fetchLinkList}>Fetch Links</button>
-      </section>
+      <h1>READING LIST</h1>
+      <div className="container">
+        <section>
+          <AddLink onAddLink={addListItemHandler} />
+        </section>
+        <section>
+          <button onClick={fetchLinkList}>Fetch Links</button>
+        </section>
+      </div>
       <section>{content}</section>
     </React.Fragment>
   );

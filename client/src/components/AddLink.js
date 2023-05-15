@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-
-import classes from './AddLink.module.css';
+import './AddLink.scss'
 
 function AddLink(props) {
   const titleRef = useRef('');
@@ -20,12 +19,10 @@ function AddLink(props) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className={classes.control}>
-        <label htmlFor='title'>Title</label>
-        <input type='text' id='title' ref={titleRef} />
-        <label htmlFor='link'>Link</label>
-        <input type='text' id='link' ref={linkRef} />
+    <form onSubmit={submitHandler}  className='container'>
+      <div>
+        <input type='text' id='title' ref={titleRef} placeholder='Enter title'/>
+        <input type='text' id='link' ref={linkRef} placeholder='Enter Link'/>
       </div>
       <button>Add Link</button>
     </form>

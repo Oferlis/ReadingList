@@ -1,8 +1,5 @@
 export async function deleteLink(linkId) {
-    console.log("click!", linkId)
-    
     const link = `/links/${linkId}`
-    console.log(link)
     if (window.confirm("Do you want to delete the link?")) {
         const response = await fetch(link, {
             method: 'DELETE',
@@ -25,6 +22,29 @@ export async function fetchList() {
       }
       return await response.json();
 
+}
+
+export async function markLinkAsRead(linkId, isRead) {
+    console.log(isRead)
+    const read = {
+        "isRead": !isRead,
+      };
+    const link = `/links/${linkId}`
+    await fetch(link, {
+        method: 'PATCH',
+        body: JSON.stringify(read),
+        headers: {
+        'Content-Type': 'application/json'
+        },
+    }).then((res) => {
+        if (!res.ok) {
+            throw new Error('Could not mark link as read :(')
+        }
+        else {
+            window.location.reload()
+        }
+    })
+    
 }
 
 

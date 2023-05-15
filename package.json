@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "client": "^0.0.1",
+    "sass": "^1.62.1",
     "server": "^1.0.38"
   },
   "devDependencies": {
