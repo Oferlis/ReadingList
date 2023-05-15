@@ -23,6 +23,14 @@ function App() {
           link: listData.link,
           isRead: listData.isRead,
         }
+      }).sort((a,b) => {
+        if (a.isRead && !b.isRead) {
+          return 0; // a comes before b
+        } else if (!a.isRead && b.isRead) {
+          return -1; // b comes before a
+        } else {
+          return 1; // no change in order
+        }
       })
       
       setList(transformedList)
