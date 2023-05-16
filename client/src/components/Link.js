@@ -9,8 +9,6 @@ async function deleteLinkHandler(id) {
     return deleteLink(id)
 }
 
-
-
 const Link = (props) => {
     const [isChecked, setIsChecked] = useState(props.isRead)
 

@@ -5,7 +5,7 @@ import "./App.css";
 import { fetchList } from "./helpers/requests";
 
 function App() {
-  const [list, setList] = useState([{name: "wow"}]);
+  const [list, setList] = useState([{name: "No data yet..."}]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
 
@@ -25,11 +25,11 @@ function App() {
         }
       }).sort((a,b) => {
         if (a.isRead && !b.isRead) {
-          return 0; // a comes before b
+          return 1; // a comes before b
         } else if (!a.isRead && b.isRead) {
           return -1; // b comes before a
         } else {
-          return 1; // no change in order
+          return 0; // no change in order
         }
       })
       
