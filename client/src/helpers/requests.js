@@ -25,7 +25,6 @@ export async function fetchList() {
 }
 
 export async function markLinkAsRead(linkId, isRead) {
-    console.log(isRead)
     const read = {
         "isRead": !isRead,
       };
@@ -40,9 +39,9 @@ export async function markLinkAsRead(linkId, isRead) {
         if (!res.ok) {
             throw new Error('Could not mark link as read :(')
         }
-        else {
-            window.location.reload()
-        }
+        // else {
+        //     window.location.reload()
+        // }
     })
     
 }
