@@ -13,7 +13,8 @@ const Link = (props) => {
     const [isChecked, setIsChecked] = useState(props.isRead)
 
     const handleCheckedBox = (id, isRead) => {
-        markLinkAsRead(id,isRead)
+        props.onUpdate(!isRead, props.id)
+        markLinkAsRead(id, isRead)
         setIsChecked(!isChecked)
     }
 

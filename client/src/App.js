@@ -9,6 +9,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
 
+  const updateListItem = (updatedItem, itemId) => {
+    console.log(updatedItem)
+    setList(prevList => prevList.map(item => {
+      var tmp = Object.assign({}, item) 
+      if (tmp.id === itemId) {
+        tmp.isRead = updatedItem
+      }
+      return item;
+    }))
+  }
+
   const fetchLinkList = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -71,7 +82,7 @@ function App() {
   }
 
   if (list.length > 0) {
-    content = <LinkList links={list} />
+    content = <LinkList links={list} onUpdate={updateListItem}/>
   }
 
   return (
