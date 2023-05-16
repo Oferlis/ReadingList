@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {deleteLink, markLinkAsRead} from "../helpers/requests"
 
 const openLinkHandler = (link) => {
@@ -8,22 +9,23 @@ async function deleteLinkHandler(id) {
     return deleteLink(id)
 }
 
-async function readLinkHandler(id, isRead) {
-    return markLinkAsRead(id, isRead)
-}
 
 
 const Link = (props) => {
+    const [isChecked, setIsChecked] = useState(props.isRead)
+
+    const handleCheckedBox = (id, isRead) => {
+        markLinkAsRead(id,isRead)
+        setIsChecked(!isChecked)
+    }
+
     return (
         <li className="table-row">
-            <div className='col-1' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
-            <div className='col-2'>
-                {props.isRead?.toString()}
-            </div>
             <div className='col-3'>
-                <button onClick={() => readLinkHandler(props.id, props.isRead)}>{props.isRead ? 'Mark as unread' : 'Mark as read'}</button>
+                <input type='checkbox' onChange={() => handleCheckedBox(props.id, props.isRead)} checked={isChecked}/>
                 <button onClick={() => deleteLinkHandler(props.id)}>Delete</button>
             </div>
+            <div className='col-1' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
         </li>
     )
 }
