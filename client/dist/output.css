@@ -685,6 +685,10 @@ video {
   place-content: center;
 }
 
+.place-content-between {
+  place-content: space-between;
+}
+
 .place-content-around {
   place-content: space-around;
 }
