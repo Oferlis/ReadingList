@@ -19,12 +19,12 @@ const Link = (props) => {
     }
 
     return (
-        <li className="table-row">
-            <div className='col-3'>
+        <li className="rounded-xl my-2 px-4 py-2 flex content-between bg-white">
+            <div className='w-1/6'>
                 <input type='checkbox' onChange={() => handleCheckedBox(props.id, props.isRead)} checked={isChecked}/>
                 <button onClick={() => deleteLinkHandler(props.id)}>Delete</button>
             </div>
-            <div className='col-1' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
+            <div className='w-5/6' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
         </li>
     )
 }

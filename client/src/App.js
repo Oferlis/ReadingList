@@ -86,8 +86,8 @@ function App() {
   }
 
   return (
-    <React.Fragment>
-      <h1 className="text-rose-500">READING LIST</h1>
+    <div className="w-full grid place-items-center bg-gradient-to-r from-violet-500 to-fuchsia-500">
+      <h1 className="text-2xl text-gray-700 font-mono">READING LIST</h1>
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />
@@ -97,7 +97,7 @@ function App() {
         </section>
       </div>
       <section>{content}</section>
-    </React.Fragment>
+    </div>
   );
 }
 
