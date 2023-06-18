@@ -87,7 +87,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <h1>READING LIST</h1>
+      <h1 className="text-rose-500">READING LIST</h1>
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />
