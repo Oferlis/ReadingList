@@ -45,7 +45,6 @@ function App() {
       })
       
       setList(transformedList)
-      console.log(transformedList)
     }
     catch (error) {
       setError(error.message);
@@ -86,7 +85,7 @@ function App() {
   }
 
   return (
-    <div className="w-full grid place-items-center bg-gradient-to-r from-violet-500 to-fuchsia-500">
+    <div className="w-full md:mx-0 px-4 grid place-items-center bg-gradient-to-tr from-violet-500 to-fuchsia-400">
       <h1 className="text-2xl text-gray-700 font-mono">READING LIST</h1>
       <div className="container">
         <section>
