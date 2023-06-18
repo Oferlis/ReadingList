@@ -23,7 +23,7 @@ const Link = (props) => {
             <div className=''>
                 <input type='checkbox' onChange={() => handleCheckedBox(props.id, props.isRead)} checked={isChecked}/>
             </div>
-            <div className='w-4/6' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
+            <div className='w-4/6 whitespace-nowrap overflow-scroll' onClick={() => openLinkHandler(props.link)}>{props.name}</div>
             <div className='w-1/6 flex flex-row h-6 place-content-between'>
                 <img src='/images/checkbox-icon.svg' alt='Mark as read' onClick={() => handleCheckedBox(props.id, props.isRead)}/>
                 <img src='/images/delete-icon.svg' alt='Delete' onClick={() => deleteLinkHandler(props.id)}/>
