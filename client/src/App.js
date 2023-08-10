@@ -69,16 +69,17 @@ function App() {
 
   async function addListItemHandler(link) {
     const json_str = JSON.stringify(link);
-    const response = await fetch("/links", {
+    await fetch("/links", {
       method: "POST",
       body: json_str,
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    if (!response.ok) {
-      throw new Error("Could not POST data :(");
-    }
+    })
+      .then((res) => res.json())
+      .then((new_data) => setList((prevList) => [...prevList, new_data]));
+
+    console.log(list);
   }
 
   let content = <p>Found no links.</p>;
@@ -112,7 +113,7 @@ function App() {
           <button onClick={fetchLinkList}>Fetch Links</button>
         </section>
       </div>
-      <section>{content}</section>
+      <section className="items-list">{content}</section>
     </div>
   );
 }
