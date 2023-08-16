@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import AddLink from "./components/AddLink";
 import LinkList from "./components/LinkList";
 import "./App.css";
 import { fetchList } from "./helpers/requests";
+// import { Login } from "./Login";
 
 function App() {
   const [list, setList] = useState([{ name: "No data yet..." }]);
@@ -105,6 +106,7 @@ function App() {
   return (
     <div className="w-full md:mx-0 px-4 grid place-items-center bg-gradient-to-tr from-violet-500 to-fuchsia-400">
       <h1 className="text-2xl text-gray-700 font-mono">READING LIST</h1>
+      {/* <Login /> */}
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />

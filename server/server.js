@@ -1,20 +1,17 @@
-require('dotenv').config()
+require("dotenv").config();
+const dbConnect = require("./db/dbConnect");
 
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DATABASE_URL)
-const db = mongoose.connection
-db.on('err', (error) => {console.error(error);});
-db.once('open', () => {console.log('Connected to DB');})
+dbConnect();
 
-app.use(express.json())
+app.use(express.json());
 
-const linksRouter = require('./routes/links.js')
-app.use('/links', linksRouter)
+const linksRouter = require("./routes/links.js");
+const registerRouter = require("./routes/register.js");
+app.use("/links", linksRouter);
+app.use("/register", registerRouter);
 
-app.listen(3001, () => console.log("Server is up"))
-
-
-
+app.listen(3001, () => console.log("Server is up"));
