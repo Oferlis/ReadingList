@@ -11,7 +11,7 @@ app.use(express.json());
 
 const linksRouter = require("./routes/links.js");
 const registerRouter = require("./routes/register.js");
+app.use("/", registerRouter);
 app.use("/links", linksRouter);
-app.use("/register", registerRouter);
 
 app.listen(3001, () => console.log("Server is up"));
