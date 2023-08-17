@@ -70,4 +70,12 @@ router.post("/login", async (req, res) => {
     });
 });
 
+router.get("/free-endpoint", async (req, res) => {
+  res.json({ message: "You are free to access" });
+});
+
+router.get("/auth-endpoint", auth, async (req, res) => {
+  res.json({ message: "You are authorized to access" });
+});
+
 module.exports = router;
