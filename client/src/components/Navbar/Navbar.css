@@ -1,0 +1,18 @@
+ul {
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+li {
+    background-color: aliceblue;
+    width: auto;
+    text-align: left;
+}
+
+.blank {
+    flex: 1;
+    background-color: transparent;
+}
