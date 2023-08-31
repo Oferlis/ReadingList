@@ -42,6 +42,13 @@
     justify-content: center;
 }
 
+.container button {
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #fdbb2d;
+}
+
 h1 {
     font-size: 26px;
     margin: 20px 0;
@@ -49,5 +56,43 @@ h1 {
   }
 
 .items-list {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 35%;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #177365;
+}
+
+body {
+  background: #41c0ae;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width:fit-content;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  background-color: white;
+
+  box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75);
+  -webkit-box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75);
+  -moz-box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75);
+}
+
+
+input, label{
+  width: auto;
+}
+
+input {
+  background-color: rgb(221, 219, 219);
+  color: black
 }

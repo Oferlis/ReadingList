@@ -102,8 +102,8 @@ export const Home = () => {
   }
 
   return (
-    <div className="w-full md:mx-0 px-4 grid place-items-center bg-gradient-to-tr from-violet-500 to-fuchsia-400">
-      <h1 className="text-2xl text-gray-700 font-mono">READING LIST</h1>
+    <div className="">
+      <h1 className="">READING LIST</h1>
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />

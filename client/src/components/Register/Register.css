@@ -1,0 +1,14 @@
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    justify-content: center;
+
+    background-color: #41c0ae;
+/* 
+    box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75);
+  -webkit-box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75);
+  -moz-box-shadow: 10px 10px 5px -4px rgba(105,105,105,0.75); */
+  }
+  

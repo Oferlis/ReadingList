@@ -39,8 +39,8 @@ export const Register = () => {
           placeholder="Ahsoka Tano"
         />
         <button type="submit">Register</button>
+        <button>Already have an account? Log In</button>
       </form>
-      <button>Already have an account? Log In</button>
     </>
   );
 };
