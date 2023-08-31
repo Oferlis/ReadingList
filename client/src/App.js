@@ -3,7 +3,8 @@ import AddLink from "./components/AddLink";
 import LinkList from "./components/LinkList";
 import "./App.css";
 import { fetchList } from "./helpers/requests";
-// import { Login } from "./Login";
+import { Login } from "./components/Login";
+import { Register } from "./components/Register";
 
 function App() {
   const [list, setList] = useState([{ name: "No data yet..." }]);
@@ -114,6 +115,8 @@ function App() {
         <section>
           <button onClick={fetchLinkList}>Fetch Links</button>
         </section>
+        <Login />
+        <Register />
       </div>
       <section className="items-list">{content}</section>
     </div>
