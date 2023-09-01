@@ -30,8 +30,8 @@ export const Login = () => {
           placeholder="your_password"
         />
         <button type="submit">Log In</button>
+        <button>Don't have an account? Register here</button>
       </form>
-      <button>Don't have an account? Register here</button>
     </>
   );
 };

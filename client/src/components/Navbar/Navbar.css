@@ -10,6 +10,8 @@ li {
     background-color: aliceblue;
     width: auto;
     text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .blank {

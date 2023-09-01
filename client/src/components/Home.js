@@ -109,7 +109,7 @@ export const Home = () => {
           <AddLink onAddLink={addListItemHandler} />
         </section>
         <section>
-          <button onClick={fetchLinkList}>Fetch Links</button>
+          {/* <button onClick={fetchLinkList}>Fetch Links</button> */}
         </section>
       </div>
       <section className="items-list">{content}</section>
