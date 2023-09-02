@@ -28,7 +28,7 @@ export const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           id="password"
-          placeholder="your_password"
+          placeholder="Your password"
         />
 
         <input
@@ -36,7 +36,7 @@ export const Register = () => {
           onChange={(e) => setName(e.target.value)}
           type="name"
           id="name"
-          placeholder="Ahsoka Tano"
+          placeholder="Your name"
         />
         <button type="submit">Register</button>
         <button>Already have an account? Log In</button>
