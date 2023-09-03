@@ -1,17 +1,26 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-module.exports = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
+const hashPassword = (password) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(12, (err, salt) => {
+      if (err) {
+        reject(err);
+      }
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(hash);
+      });
+    });
+  });
+};
 
-    const decodedToken = jwt.verify(token, "RANDOM-TOKEN");
-
-    const user = await decodedToken;
-
-    req.user = user;
-
-    next();
-  } catch (error) {
-    res.status(401).json({ error: "Invalid request" });
-  }
+const comparePassword = (password, hashed) => {
+  return bcrypt.compare(password, hashed);
+};
+module.exports = {
+  hashPassword,
+  comparePassword,
 };

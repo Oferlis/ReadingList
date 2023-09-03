@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
 import { fetchList } from "../helpers/requests";
+import { getLinks } from "../api/api";
 
 export const Home = () => {
   const [list, setList] = useState([{ name: "No data yet..." }]);
@@ -40,7 +41,9 @@ export const Home = () => {
     setError(null);
 
     try {
-      const data = await fetchList();
+      const data = getLinks();
+
+      console.log("after get links", data);
 
       const transformedList = data.map((listData) => {
         return {

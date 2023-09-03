@@ -1,13 +1,22 @@
 import { useState } from "react";
 import "./Login.css";
+import { loginUser } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email + password);
+    const response = loginUser(data);
+    if (response === true) {
+      navigate("/");
+      setData({});
+    }
   };
 
   return (
@@ -15,16 +24,16 @@ export const Login = () => {
       <form onSubmit={handleSubmit}>
         <label for="email">Email</label>
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={data.email}
+          onChange={(e) => setData({ ...data, email: e.target.value })}
           type="email"
           id="email"
           placeholder="youremail@gmail.com"
         />
         <label for="password">Password</label>
         <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={data.password}
+          onChange={(e) => setData({ ...data, password: e.target.value })}
           type="password"
           id="password"
           placeholder="your_password"

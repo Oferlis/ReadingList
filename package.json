@@ -10,6 +10,7 @@
     "@supabase/supabase-js": "^2.32.0",
     "client": "^0.0.1",
     "react-hook-form": "^7.45.4",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.15.0",
     "sass": "^1.62.1",
     "server": "^1.0.38"
