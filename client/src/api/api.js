@@ -44,6 +44,22 @@ export async function registerUser(data) {
   }
 }
 
+export async function logoutUser() {
+  try {
+    const { data } = await axios.post("/logout");
+
+    if (data.error) {
+      toast.error(data.error);
+      return false;
+    } else {
+      toast.success("You are logged out! see you soon");
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function loginUser(data) {
   const { email, password } = data;
   try {

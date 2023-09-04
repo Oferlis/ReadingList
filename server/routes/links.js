@@ -3,7 +3,7 @@ const getTitle = require("get-url-title");
 const express = require("express");
 const res = require("express/lib/response");
 const router = express.Router();
-const Link = require("../db/links");
+const Link = require("../models/links");
 
 //Get all
 router.get("/", async (req, res) => {
