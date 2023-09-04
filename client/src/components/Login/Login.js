@@ -10,12 +10,13 @@ export const Login = () => {
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = loginUser(data);
+    const response = await loginUser(data);
     if (response === true) {
-      navigate("/");
       setData({});
+      console.log("redirecting..");
+      navigate("/dashboard");
     }
   };
 
