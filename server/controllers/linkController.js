@@ -40,7 +40,11 @@ const addLink = async (req, res) => {
 
 const fetchAllLinks = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { token } = req.cookies;
+    console.log(req.cookies);
+    console.log(token);
+
+    //understand the userID from the token - use getProfile methd
 
     await User.findById(userId, "links", (err, user) => {
       if (err) {

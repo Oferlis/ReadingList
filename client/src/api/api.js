@@ -4,22 +4,22 @@ import { toast } from "react-hot-toast";
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
 
-export function getLinks() {
-  axios
-    .get("/links/")
-    .then((response) => {
-      // handle success
-      console.log("links were fetched", response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log("an error occured", error);
-      console.log("an error occured");
-    })
-    .finally(function () {
-      // always executed
-      console.log("in finally block");
-    });
+export async function getLinks(data) {
+  const userId = data;
+  try {
+    const { data } = await axios.get("/links", { userId: userId });
+
+    if (data.error) {
+      toast.error(data.error);
+      return [];
+    } else {
+      console.log("links fetched!");
+      console.log(data);
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function registerUser(data) {
@@ -72,5 +72,26 @@ export async function loginUser(data) {
       console.log("success!!");
       return true;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+export async function addLink(data) {
+  const { name, link } = data;
+  try {
+    const { data } = await axios.post("/", { name, link });
+
+    if (data.error) {
+      toast.error(data.error);
+      return false;
+    } else {
+      console.log("link added! success!!");
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function fetchLinks() {}

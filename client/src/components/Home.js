@@ -1,13 +1,15 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
 import { fetchList } from "../helpers/requests";
 import { getLinks } from "../api/api";
+import { UserContext } from "../context/userContext";
 
 export const Home = () => {
   const [list, setList] = useState([{ name: "No data yet..." }]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { user } = useContext(UserContext);
 
   const sortItems = (listToSort) => {
     return listToSort.sort((a, b) => {
@@ -41,7 +43,7 @@ export const Home = () => {
     setError(null);
 
     try {
-      const data = getLinks();
+      const data = await getLinks(user.id);
 
       console.log("after get links", data);
 
