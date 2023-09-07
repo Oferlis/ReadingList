@@ -80,8 +80,6 @@ async function getTitleWithTimeout(link) {
 
   try {
     linkTitle = await Promise.race([getTitlePromise, timeout]);
-    // The promise resolved within the timeout period
-    // Handle the linkTitle here
   } catch (error) {
     linkTitle = "placeholder";
   }
