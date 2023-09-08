@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 export async function getLinks(data) {
   const userId = data;
   try {
-    const { data } = await axios.get("/links", { userId: userId });
+    const { data } = await axios.get("/links");
 
     if (data.error) {
       toast.error(data.error);
@@ -15,7 +15,7 @@ export async function getLinks(data) {
     } else {
       console.log("links fetched!");
       console.log(data);
-      return true;
+      return data;
     }
   } catch (error) {
     console.log(error);
@@ -80,7 +80,8 @@ export async function loginUser(data) {
 export async function addLink(data) {
   const { name, link } = data;
   try {
-    const { data } = await axios.post("/", { name, link });
+    const { data } = await axios.post("/links", { name, link });
+    console.log(" link");
 
     if (data.error) {
       toast.error(data.error);
@@ -93,5 +94,3 @@ export async function addLink(data) {
     console.log(error);
   }
 }
-
-export async function fetchLinks() {}

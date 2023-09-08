@@ -1,9 +1,13 @@
+const { NULL } = require("sass");
 const Link = require("../models/links");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 const addLink = async (req, res) => {
   try {
-    const { name, link, userId } = req.body;
+    console.log("addlink");
+    const { name, link } = req.body;
+    const { token } = req.headers;
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -19,47 +23,30 @@ const addLink = async (req, res) => {
       isRead: false,
     });
 
-    User.findByIdAndUpdate(
-      userId,
-      { $push: { links: newLinkItem } },
-      { new: true }, // To return the updated user document
-      (err, updatedUser) => {
-        if (err) {
-          console.error("Error updating user:", err);
-          return;
-        }
+    const user = getUser(token);
+    user.links.push(newLinkItem);
 
-        console.log("Item added to user:", updatedUser);
-
-        // Close the Mongoose connection (if needed)
-        mongoose.connection.close();
+    newUser.save((err, savedUser) => {
+      if (err) {
+        console.error("Error saving user:", err);
+      } else {
+        console.log("Link added to user:", savedUser);
+        return res.json({ message: "saved" });
       }
-    );
-  } catch (error) {}
+
+      mongoose.connection.close();
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const fetchAllLinks = async (req, res) => {
   try {
     const { token } = req.cookies;
-    console.log(req.cookies);
-    console.log(token);
 
-    //understand the userID from the token - use getProfile methd
-
-    await User.findById(userId, "links", (err, user) => {
-      if (err) {
-        console.error("Error finding user:", err);
-        return res.status(500).json({ error: "Internal Server Error" });
-      }
-
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      // Access the 'links' array from the retrieved user and send it as JSON
-      const links = user.links;
-      return res.json({ links });
-    });
+    const user = getUser(token);
+    return res.json(user.links);
   } catch (error) {
     console.log(error);
   }
@@ -84,6 +71,18 @@ async function getTitleWithTimeout(link) {
     linkTitle = "placeholder";
   }
   return linkTitle;
+}
+
+async function getUser(token) {
+  result = jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+    if (err) {
+      return null;
+    }
+
+    return user;
+  });
+
+  return result;
 }
 
 module.exports = { addLink, fetchAllLinks, fetchLink, deleteLink, updateLink };

@@ -43,7 +43,7 @@ export const Home = () => {
     setError(null);
 
     try {
-      const data = await getLinks(user.id);
+      const data = await getLinks();
 
       console.log("after get links", data);
 
@@ -109,6 +109,7 @@ export const Home = () => {
   return (
     <div className="">
       <h1 className="">READING LIST</h1>
+      <h2>Hey {user.firstName} what's on your mind today?</h2>
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />
