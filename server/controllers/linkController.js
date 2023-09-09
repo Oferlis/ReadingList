@@ -78,9 +78,12 @@ async function getUser(token) {
     if (err) {
       return null;
     }
+    console.log(user);
     return user.id;
   });
-  return await User.findOne({ result });
+  ret = await User.findById(result);
+  console.log(ret);
+  return ret;
 }
 
 module.exports = { addLink, fetchAllLinks, fetchLink, deleteLink, updateLink };
