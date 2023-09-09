@@ -1,5 +1,4 @@
 const { NULL } = require("sass");
-const Link = require("../models/links");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -7,7 +6,7 @@ const addLink = async (req, res) => {
   try {
     console.log("addlink");
     const { name, link } = req.body;
-    const { token } = req.headers;
+    const { token } = req.cookies;
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -16,17 +15,18 @@ const addLink = async (req, res) => {
       name = await getTitleWithTimeout(req.body.link);
     }
 
-    const newLinkItem = await Link.create({
+    const newLinkItem = {
       name: name,
       addition_date: Date.now(),
       link: link,
       isRead: false,
-    });
+    };
 
-    const user = getUser(token);
-    user.links.push(newLinkItem);
+    const user = await getUser(token);
+    console.log(user);
+    user.links.push({ ...newLinkItem });
 
-    newUser.save((err, savedUser) => {
+    user.save((err, savedUser) => {
       if (err) {
         console.error("Error saving user:", err);
       } else {
@@ -78,11 +78,9 @@ async function getUser(token) {
     if (err) {
       return null;
     }
-
-    return user;
+    return user.id;
   });
-
-  return result;
+  return await User.findOne({ result });
 }
 
 module.exports = { addLink, fetchAllLinks, fetchLink, deleteLink, updateLink };

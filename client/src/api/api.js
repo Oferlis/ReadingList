@@ -5,16 +5,14 @@ axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
 
 export async function getLinks(data) {
-  const userId = data;
   try {
     const { data } = await axios.get("/links");
 
     if (data.error) {
       toast.error(data.error);
-      return [];
+      return null;
     } else {
-      console.log("links fetched!");
-      console.log(data);
+      console.log("links fetched!", data);
       return data;
     }
   } catch (error) {
