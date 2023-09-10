@@ -6,7 +6,7 @@ const addLink = async (req, res) => {
   try {
     console.log("addlink");
     const { name, link } = req.body;
-    const { token } = req.cookies;
+    const { token } = req.cookies; //add auth middleware instead of checking cookies
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -78,11 +78,10 @@ async function getUser(token) {
     if (err) {
       return null;
     }
-    console.log(user);
     return user.id;
   });
   ret = await User.findById(result);
-  console.log(ret);
+
   return ret;
 }
 
