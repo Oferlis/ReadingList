@@ -6,7 +6,8 @@ const addLink = async (req, res) => {
   try {
     console.log("addlink");
     const { name, link } = req.body;
-    const { token } = req.cookies; //add auth middleware instead of checking cookies
+    const { user } = req;
+    console.log(user);
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -22,8 +23,6 @@ const addLink = async (req, res) => {
       isRead: false,
     };
 
-    const user = await getUser(token);
-    console.log(user);
     user.links.push({ ...newLinkItem });
 
     user.save((err, savedUser) => {
@@ -43,9 +42,8 @@ const addLink = async (req, res) => {
 
 const fetchAllLinks = async (req, res) => {
   try {
-    const { token } = req.cookies;
+    const { user } = req;
 
-    const user = getUser(token);
     return res.json(user.links);
   } catch (error) {
     console.log(error);
@@ -71,18 +69,6 @@ async function getTitleWithTimeout(link) {
     linkTitle = "placeholder";
   }
   return linkTitle;
-}
-
-async function getUser(token) {
-  result = jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-    if (err) {
-      return null;
-    }
-    return user.id;
-  });
-  ret = await User.findById(result);
-
-  return ret;
 }
 
 module.exports = { addLink, fetchAllLinks, fetchLink, deleteLink, updateLink };

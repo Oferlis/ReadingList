@@ -1,6 +1,7 @@
 const express = require("express");
 const res = require("express/lib/response");
 const router = express.Router();
+const { authenticateUser } = require("../middleware/auth-middleware");
 
 const {
   addLink,
@@ -11,18 +12,18 @@ const {
 } = require("../controllers/linkController");
 
 //Get all
-router.get("/", fetchAllLinks);
+router.get("/", authenticateUser, fetchAllLinks);
 
 //Get one
-router.get("/:id", fetchLink);
+router.get("/:id", authenticateUser, fetchLink);
 
 //Creating one
-router.post("/", addLink);
+router.post("/", authenticateUser, addLink);
 
 //Updating one
-router.patch("/:id", updateLink);
+router.patch("/:id", authenticateUser, updateLink);
 
 //Deleting one
-router.delete("/:id", deleteLink);
+router.delete("/:id", authenticateUser, deleteLink);
 
 module.exports = router;
