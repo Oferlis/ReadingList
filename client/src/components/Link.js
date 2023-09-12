@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { deleteLink, markLinkAsRead } from "../helpers/requests";
 import "./Link.scss";
+import { updateLink, deleteLink } from "../api/api";
 
 const openLinkHandler = (link) => {
   window.open(link);
@@ -15,8 +15,8 @@ const Link = (props) => {
   const [isChecked, setIsChecked] = useState(props.isRead);
 
   const handleCheckedBox = (id, isRead) => {
-    props.onUpdate(!isRead, props.id);
-    markLinkAsRead(id, isRead);
+    updateLink(props.id, !isRead);
+
     setIsChecked(!isChecked);
   };
 

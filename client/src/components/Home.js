@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
-import { fetchList } from "../helpers/requests";
 import { getLinks } from "../api/api";
 import { UserContext } from "../context/userContext";
 

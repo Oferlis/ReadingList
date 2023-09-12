@@ -4,10 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const addLink = async (req, res) => {
   try {
-    console.log("addlink");
     const { name, link } = req.body;
     const { user } = req;
-    console.log(user);
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -49,8 +47,42 @@ const fetchAllLinks = async (req, res) => {
     console.log(error);
   }
 };
-const fetchLink = async (req, res) => {};
-const updateLink = async (req, res) => {};
+const fetchLink = async (req, res) => {}; // Is this necessary?
+
+const updateLink = async (req, res) => {
+  try {
+    const { user } = req;
+    const { isRead } = req.body;
+    const { id } = req.params;
+
+    console.log(req);
+    const linkIndex = user.links.findIndex((link) => link._id.equals(id));
+
+    if (linkIndex === -1) {
+      throw new Error("Link not found");
+    }
+
+    if (isRead !== null) {
+      user.links[linkIndex].isRead = isRead;
+    }
+
+    user.save((err, savedUser) => {
+      if (err) {
+        console.error("Error saving user:", err);
+      } else {
+        console.log("Link added to user:", savedUser);
+        return res.json({ message: "saved" });
+      }
+
+      mongoose.connection.close();
+    });
+
+    return res.status(204);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 const deleteLink = async (req, res) => {};
 
 async function getTitleWithTimeout(link) {

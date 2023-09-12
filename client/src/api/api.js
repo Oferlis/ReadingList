@@ -92,3 +92,20 @@ export async function addLink(data) {
     console.log(error);
   }
 }
+
+export async function updateLink(id, isRead) {
+  try {
+    const { data } = await axios.patch(`/links/${id}`, { isRead });
+    if (data.error) {
+      toast.error(data.error);
+      return false;
+    } else {
+      console.log("link updated!");
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteLink(id) {}
