@@ -2,17 +2,17 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 
-export default function ProtectedRoute({ children }) {
+export default function UnprotectedRoute({ children }) {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login");
+    if (user) {
+      navigate("/");
     }
   }, [user]);
 
-  if (!!user) {
+  if (!user) {
     return children;
   }
 }

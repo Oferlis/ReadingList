@@ -10,6 +10,7 @@ import { UserContextProvider } from "./context/userContext";
 
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UnprotectedRoute from "./components/UnprotectedRoute";
 
 function App() {
   return (
@@ -25,8 +26,25 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/register"
+          element={
+            <UnprotectedRoute>
+              <Register />
+            </UnprotectedRoute>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <UnprotectedRoute>
+              <Login />
+            </UnprotectedRoute>
+          }
+        />
+
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </UserContextProvider>
