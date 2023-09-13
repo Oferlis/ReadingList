@@ -47,7 +47,6 @@ const fetchAllLinks = async (req, res) => {
     console.log(error);
   }
 };
-const fetchLink = async (req, res) => {}; // Is this necessary?
 
 const updateLink = async (req, res) => {
   try {
@@ -103,4 +102,4 @@ async function getTitleWithTimeout(link) {
   return linkTitle;
 }
 
-module.exports = { addLink, fetchAllLinks, fetchLink, deleteLink, updateLink };
+module.exports = { addLink, fetchAllLinks, deleteLink, updateLink };

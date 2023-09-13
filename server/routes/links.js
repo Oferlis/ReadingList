@@ -14,9 +14,6 @@ const {
 //Get all
 router.get("/", authenticateUser, fetchAllLinks);
 
-//Get one
-router.get("/:id", authenticateUser, fetchLink);
-
 //Creating one
 router.post("/", authenticateUser, addLink);
 

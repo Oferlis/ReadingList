@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "backend": "npm start ./server",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "jest"
   },
   "author": "",
