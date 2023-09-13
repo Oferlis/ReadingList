@@ -6,7 +6,6 @@ const { authenticateUser } = require("../middleware/auth-middleware");
 const {
   addLink,
   fetchAllLinks,
-  fetchLink,
   updateLink,
   deleteLink,
 } = require("../controllers/linkController");

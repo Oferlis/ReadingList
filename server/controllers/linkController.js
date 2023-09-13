@@ -1,7 +1,3 @@
-const { NULL } = require("sass");
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-
 const addLink = async (req, res) => {
   try {
     const { name, link } = req.body;
@@ -82,8 +78,29 @@ const updateLink = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-const deleteLink = async (req, res) => {};
+const deleteLink = async (req, res) => {
+  const { user } = req;
+  const { id } = req.params;
 
+  const linkIndex = user.links.findIndex((link) => link._id.equals(id));
+
+  if (linkIndex === -1) {
+    throw new Error("Link not found");
+  }
+
+  user.links.splice(linkIndex, 1);
+
+  user.save((err) => {
+    if (err) {
+      console.error("Error saving user:", err);
+    } else {
+      console.log("Link deleted");
+      return res.json({ message: "user saved" });
+    }
+
+    mongoose.connection.close();
+  });
+};
 async function getTitleWithTimeout(link) {
   var linkTitle = "";
   const timeout = new Promise((resolve, reject) => {

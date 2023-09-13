@@ -93,6 +93,22 @@ export async function addLink(data) {
   }
 }
 
+export async function deleteLink(id) {
+  try {
+    const { data } = await axios.delete(`/links/${id}`);
+
+    if (data.error) {
+      toast.error(data.error);
+      return false;
+    } else {
+      console.log("link deleted successfuly");
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function updateLink(id, isRead) {
   try {
     const { data } = await axios.patch(`/links/${id}`, { isRead });
@@ -107,5 +123,3 @@ export async function updateLink(id, isRead) {
     console.log(error);
   }
 }
-
-export async function deleteLink(id) {}
