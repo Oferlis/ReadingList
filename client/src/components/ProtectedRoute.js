@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }) {
     if (!user) {
       navigate("/login");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   if (!!user) {
     return children;

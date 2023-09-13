@@ -10,7 +10,7 @@ export default function UnprotectedRoute({ children }) {
     if (user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   if (!user) {
     return children;
