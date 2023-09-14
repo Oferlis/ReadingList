@@ -21,7 +21,7 @@ const Link = (props) => {
   };
 
   return (
-    <li className="">
+    <li className="link-item">
       <div className="">
         <input
           type="checkbox"
@@ -35,7 +35,7 @@ const Link = (props) => {
       >
         {props.name}
       </div>
-      <div className="w-1/6 flex flex-row h-6 place-content-between">
+      <div className="link-tools">
         <img
           src="/images/checkbox-icon.svg"
           alt="Mark as read"

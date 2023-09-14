@@ -1,4 +1,4 @@
-ul {
+.navbar {
     display: flex;
     flex-direction: row;
     gap:1rem;
@@ -6,12 +6,14 @@ ul {
     margin-right: 1rem;
 }
 
-li {
+ul.navbar li:not(:nth-child(2)) {
     background-color: aliceblue;
     width: auto;
     text-align: left;
     padding-left: 1rem;
     padding-right: 1rem;
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 .blank {

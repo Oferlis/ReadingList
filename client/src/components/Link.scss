@@ -1,9 +1,28 @@
-li {
+.link-item {
     width: 100%;
     border-radius: 0.75rem;
-    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     display: flex;
     place-content: space-around;
-    background-color: green;
+    background-color: aliceblue;
 }
+
+.link-item:first-of-type  {
+    margin-top:0.5rem;
+}
+
+.link-tools {
+    width: 16.67%;
+    display: flex;
+    flex-direction: row;
+    height: 1.5rem;
+    place-content: space-between;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.link-item:hover .link-tools {
+    visibility: visible;
+    opacity: 1;
+    }

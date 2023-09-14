@@ -16,7 +16,7 @@ const Navbar = () => {
 
   if (!user) {
     return (
-      <ul>
+      <ul className="navbar">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -31,7 +31,7 @@ const Navbar = () => {
     );
   }
   return (
-    <ul>
+    <ul className="navbar">
       <li>
         <Link to="/">Home</Link>
       </li>

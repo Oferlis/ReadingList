@@ -20,6 +20,8 @@ h2 {
 }
 
 .responsive-table {
+  display: flex;
+  flex-direction: column;
   button {
     margin-right: 0.5rem;
   }
