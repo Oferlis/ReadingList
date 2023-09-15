@@ -105,10 +105,14 @@ export const Home = () => {
     );
   }
 
+  const unreadLinksNum = list.filter((item) => item.isRead === false).length;
+  //make it update when link is marked as read
+
   return (
     <div className="">
       <h1 className="">READING LIST</h1>
       <h2>Hey {user.firstName} what's on your mind today?</h2>
+      <h2>You got {unreadLinksNum} unread link(s)</h2>
       <div className="container">
         <section>
           <AddLink onAddLink={addListItemHandler} />
