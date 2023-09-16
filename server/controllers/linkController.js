@@ -1,7 +1,10 @@
+const getTitle = require("get-url-title");
+
 const addLink = async (req, res) => {
   try {
-    const { name, link } = req.body;
+    const { link } = req.body;
     const { user } = req;
+    let { name } = req.body;
 
     if (!link) {
       return res.json({ error: "Link is required!" });
@@ -103,13 +106,14 @@ const deleteLink = async (req, res) => {
 };
 async function getTitleWithTimeout(link) {
   var linkTitle = "";
+
+  const getTitlePromise = getTitle(link);
+
   const timeout = new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(new Error("Timeout"));
     }, 500);
   });
-
-  const getTitlePromise = getTitle(link);
 
   try {
     linkTitle = await Promise.race([getTitlePromise, timeout]);
