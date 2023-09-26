@@ -12,7 +12,6 @@ export async function getLinks(data) {
       toast.error(data.error);
       return null;
     } else {
-      console.log("links fetched!", data);
       return data;
     }
   } catch (error) {
@@ -67,8 +66,7 @@ export async function loginUser(data) {
       toast.error(data.error);
       return false;
     } else {
-      console.log("success!!");
-      return true;
+      return data;
     }
   } catch (error) {
     console.log(error);
@@ -79,13 +77,11 @@ export async function addLink(data) {
   const { name, link } = data;
   try {
     const { data } = await axios.post("/links", { name, link });
-    console.log(" link");
 
     if (data.error) {
       toast.error(data.error);
       return false;
     } else {
-      console.log("link added! success!!");
       return true;
     }
   } catch (error) {
@@ -101,7 +97,6 @@ export async function deleteLink(id) {
       toast.error(data.error);
       return false;
     } else {
-      console.log("link deleted successfuly");
       return true;
     }
   } catch (error) {
@@ -116,7 +111,6 @@ export async function updateLink(id, isRead) {
       toast.error(data.error);
       return false;
     } else {
-      console.log("link updated!");
       return true;
     }
   } catch (error) {

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Login.css";
 import { loginUser } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
 
 export const Login = () => {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
@@ -13,8 +15,9 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await loginUser(data);
-    if (response === true) {
+    if (response) {
       setData({});
+      setUser(response);
       navigate("/dashboard");
     }
   };
