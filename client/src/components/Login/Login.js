@@ -15,7 +15,6 @@ export const Login = () => {
     const response = await loginUser(data);
     if (response === true) {
       setData({});
-      console.log("redirecting..");
       navigate("/dashboard");
     }
   };

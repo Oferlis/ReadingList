@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
-import { getLinks } from "../api/api";
+import { addLink, getLinks } from "../api/api";
 import { UserContext } from "../context/userContext";
 
 export const Home = () => {
@@ -9,6 +9,7 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user } = useContext(UserContext);
+  const unreadLinksNum = list.filter((item) => item.isRead === false).length;
 
   const sortItems = (listToSort) => {
     return listToSort.sort((a, b) => {
@@ -43,8 +44,6 @@ export const Home = () => {
     try {
       const data = await getLinks();
 
-      console.log("after get links", data);
-
       const transformedList = data.map((listData) => {
         return {
           id: listData._id,
@@ -69,21 +68,6 @@ export const Home = () => {
     setList((prevList) => sortItems(prevList.filter((item) => item.id !== id)));
   };
 
-  async function addListItemHandler(link) {
-    const json_str = JSON.stringify(link);
-    await fetch("/links", {
-      method: "POST",
-      body: json_str,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((new_data) => setList((prevList) => [...prevList, new_data]));
-
-    console.log(list);
-  }
-
   let content = <p>Found no links.</p>;
 
   if (error) {
@@ -104,9 +88,6 @@ export const Home = () => {
     );
   }
 
-  const unreadLinksNum = list.filter((item) => item.isRead === false).length;
-  //make it update when link is marked as read
-
   return (
     <div className="">
       <h1 className="">READING LIST</h1>
@@ -114,7 +95,7 @@ export const Home = () => {
       <h2>You got {unreadLinksNum} unread link(s)</h2>
       <div className="container">
         <section>
-          <AddLink onAddLink={addListItemHandler} />
+          <AddLink onAddLink={addLink} />
         </section>
       </div>
       <section className="items-list">{content}</section>

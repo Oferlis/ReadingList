@@ -7,7 +7,6 @@ function AddLink() {
   const linkRef = useRef("");
 
   function submitHandler(event) {
-    console.log(event);
     event.preventDefault();
 
     // could add validation here...
@@ -18,6 +17,8 @@ function AddLink() {
     };
 
     addLink(link);
+    titleRef.current.value = "";
+    linkRef.current.value = "";
   }
 
   return (

@@ -88,7 +88,6 @@ const logoutUser = async (req, res) => {
     // Also clear request cookie on client
     res.setHeader("Clear-Site-Data", '"cookies", "storage"');
     res.status(200).json({ message: "You are logged out!" });
-    console.log("done");
   } catch (error) {
     console.log(error);
   }

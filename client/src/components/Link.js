@@ -14,18 +14,18 @@ async function deleteLinkHandler(props) {
 const Link = (props) => {
   const [isChecked, setIsChecked] = useState(props.isRead);
 
-  const handleCheckedBox = (id, isRead) => {
-    updateLink(props.id, !isRead);
+  const handleCheckedBox = () => {
+    updateLink(props.id, !props.isRead);
 
     setIsChecked(!isChecked);
   };
 
   return (
     <li className="link-item">
-      <div className="">
+      <div>
         <input
           type="checkbox"
-          onChange={() => handleCheckedBox(props.id, props.isRead)}
+          onChange={handleCheckedBox}
           checked={isChecked}
         />
       </div>

@@ -53,7 +53,6 @@ const updateLink = async (req, res) => {
     const { isRead } = req.body;
     const { id } = req.params;
 
-    console.log(req);
     const linkIndex = user.links.findIndex((link) => link._id.equals(id));
 
     if (linkIndex === -1) {
