@@ -17,8 +17,8 @@ function AddLink() {
     };
 
     addLink(link);
-    titleRef.current.value = "";
-    linkRef.current.value = "";
+    titleRef.current.reset();
+    linkRef.current.reset();
   }
 
   return (

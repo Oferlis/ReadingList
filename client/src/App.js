@@ -35,7 +35,6 @@ function App() {
             </UnprotectedRoute>
           }
         />
-
         <Route
           path="/login"
           element={
@@ -45,7 +44,14 @@ function App() {
           }
         />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </UserContextProvider>
   );
