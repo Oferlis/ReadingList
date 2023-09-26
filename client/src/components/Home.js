@@ -23,7 +23,6 @@ export const Home = () => {
   };
 
   const updateListItem = (updatedItem, itemId) => {
-    console.log(updatedItem);
     setList((prevList) =>
       sortItems(
         prevList.map((item) => {
@@ -64,7 +63,7 @@ export const Home = () => {
 
   useEffect(() => {
     fetchLinkList();
-  }, [fetchLinkList]);
+  }, [fetchLinkList, list]);
 
   const handleItemDeletion = (id) => {
     setList((prevList) => sortItems(prevList.filter((item) => item.id !== id)));
