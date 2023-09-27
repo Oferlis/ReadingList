@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Link.scss";
 import { updateLink, deleteLink } from "../api/api";
+import ToolsSidebar from "./ToolsSidebar";
 
 const openLinkHandler = (link) => {
   window.open(link);
@@ -8,7 +9,6 @@ const openLinkHandler = (link) => {
 
 async function deleteLinkHandler(props) {
   deleteLink(props.id);
-  props.onDeleteItem(props.id);
 }
 
 const Link = (props) => {
@@ -35,19 +35,10 @@ const Link = (props) => {
       >
         {props.name}
       </div>
-      <div className="link-tools">
-        <img
-          src="/images/checkbox-icon.svg"
-          alt="Mark as read"
-          onClick={() => handleCheckedBox(props.id, props.isRead)}
-        />
-        <img
-          src="/images/delete-icon.svg"
-          alt="Delete"
-          onClick={() => deleteLinkHandler(props)}
-        />
-        <img src="/images/edit-icon.svg" alt="edit" />
-      </div>
+      <ToolsSidebar
+        onDelete={() => deleteLinkHandler(props)}
+        onCheckBox={() => handleCheckedBox(props)}
+      />
     </li>
   );
 };

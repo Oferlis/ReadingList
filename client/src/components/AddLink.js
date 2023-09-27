@@ -17,8 +17,7 @@ function AddLink() {
     };
 
     addLink(link);
-    titleRef.current.reset();
-    linkRef.current.reset();
+    event.target.reset();
   }
 
   return (
