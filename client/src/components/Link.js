@@ -1,6 +1,5 @@
-import { useState } from "react";
 import "./Link.scss";
-import { updateLink, deleteLink } from "../api/api";
+import { deleteLink } from "../api/api";
 import ToolsSidebar from "./ToolsSidebar";
 
 const openLinkHandler = (link) => {
@@ -9,24 +8,22 @@ const openLinkHandler = (link) => {
 
 async function deleteLinkHandler(props) {
   deleteLink(props.id);
+  // updateList()
 }
 
 const Link = (props) => {
-  const [isChecked, setIsChecked] = useState(props.isRead);
-
   const handleCheckedBox = () => {
-    updateLink(props.id, !props.isRead);
-
-    setIsChecked(!isChecked);
+    props.onUpdate(!props.isRead, props.id);
   };
 
+  console.log(props);
   return (
-    <li className="link-item">
+    <li className="link-item" key={props.id}>
       <div>
         <input
           type="checkbox"
           onChange={handleCheckedBox}
-          checked={isChecked}
+          checked={props.isRead}
         />
       </div>
       <div

@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
-import { addLink, getLinks } from "../api/api";
+import { addLink, getLinks, updateLink } from "../api/api";
 import { UserContext } from "../context/userContext";
 import sortItems from "../helpers/sorters";
 
@@ -13,6 +13,8 @@ export const Home = () => {
   const unreadLinksNum = list.filter((item) => item.isRead === false).length;
 
   const updateListItem = (updatedItem, itemId) => {
+    updateLink(itemId, updatedItem);
+
     setList((prevList) =>
       sortItems(
         prevList.map((item) => {
@@ -27,6 +29,7 @@ export const Home = () => {
   };
 
   const fetchLinkList = useCallback(async () => {
+    console.log("fetching");
     setIsLoading(true);
     setError(null);
 
@@ -47,11 +50,11 @@ export const Home = () => {
       setError(error.message);
     }
     setIsLoading(false);
-  }, []);
+  }, [setList]);
 
   useEffect(() => {
     fetchLinkList();
-  }, [fetchLinkList, list]);
+  }, [fetchLinkList]);
 
   let content = <p>Found no links.</p>;
 
