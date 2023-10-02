@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 import AddLink from "./AddLink";
 import LinkList from "./LinkList";
-import { addLink, getLinks, updateLink } from "../api/api";
+import { addLink, getLinks, updateLink, deleteLink } from "../api/api";
 import { UserContext } from "../context/userContext";
 import sortItems from "../helpers/sorters";
 
@@ -30,8 +30,18 @@ export const Home = () => {
 
   const addListItem = async (link) => {
     const data = await addLink(link);
-    const newList = sortItems([...list, data]);
+    console.log(data);
+    const newList = sortItems(data);
     setList(newList);
+  };
+
+  const deleteListItem = async (linkID) => {
+    console.log(linkID);
+    const result = await deleteLink(linkID);
+    if (result === true) {
+      const newList = list.filter((item) => item.id !== linkID);
+      setList(newList);
+    }
   };
 
   const fetchLinkList = useCallback(async () => {
@@ -72,7 +82,13 @@ export const Home = () => {
   }
 
   if (list.length > 0) {
-    content = <LinkList links={list} onUpdate={updateListItem} />;
+    content = (
+      <LinkList
+        links={list}
+        onUpdate={updateListItem}
+        onDelete={deleteListItem}
+      />
+    );
   }
 
   return (

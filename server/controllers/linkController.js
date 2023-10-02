@@ -27,7 +27,7 @@ const addLink = async (req, res) => {
         console.error("Error saving user:", err);
       } else {
         console.log("Link added to user:", savedUser);
-        return res.json(newLinkItem);
+        return res.json(savedUser.links);
       }
 
       mongoose.connection.close();

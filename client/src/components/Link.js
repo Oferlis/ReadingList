@@ -7,8 +7,8 @@ const openLinkHandler = (link) => {
 };
 
 async function deleteLinkHandler(props) {
-  deleteLink(props.id);
-  // updateList()
+  console.log(props);
+  // props.onDelete(props.id);
 }
 
 const Link = (props) => {

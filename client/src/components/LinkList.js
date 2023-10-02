@@ -12,6 +12,7 @@ const LinkList = (props) => {
           link={link.link}
           isRead={link.isRead}
           onUpdate={props.onUpdate}
+          onDelete={props.onDelete}
         />
       ))}
     </ul>
