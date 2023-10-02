@@ -1,5 +1,4 @@
 import "./Link.scss";
-import { deleteLink } from "../api/api";
 import ToolsSidebar from "./ToolsSidebar";
 
 const openLinkHandler = (link) => {
@@ -8,7 +7,7 @@ const openLinkHandler = (link) => {
 
 async function deleteLinkHandler(props) {
   console.log(props);
-  // props.onDelete(props.id);
+  props.onDelete(props.id);
 }
 
 const Link = (props) => {

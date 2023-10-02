@@ -19,7 +19,7 @@ export const Home = () => {
       sortItems(
         prevList.map((item) => {
           var tmp = Object.assign({}, item);
-          if (tmp.id === itemId) {
+          if (tmp._id === itemId) {
             tmp.isRead = updatedItem;
           }
           return tmp;
@@ -30,7 +30,6 @@ export const Home = () => {
 
   const addListItem = async (link) => {
     const data = await addLink(link);
-    console.log(data);
     const newList = sortItems(data);
     setList(newList);
   };
@@ -39,7 +38,7 @@ export const Home = () => {
     console.log(linkID);
     const result = await deleteLink(linkID);
     if (result === true) {
-      const newList = list.filter((item) => item.id !== linkID);
+      const newList = list.filter((item) => item._id !== linkID);
       setList(newList);
     }
   };
@@ -53,7 +52,7 @@ export const Home = () => {
 
       const transformedList = data.map((listData) => {
         return {
-          id: listData._id,
+          _id: listData._id,
           name: listData.name,
           link: listData.link,
           isRead: listData.isRead,
