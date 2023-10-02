@@ -82,7 +82,7 @@ export async function addLink(data) {
       toast.error(data.error);
       return false;
     } else {
-      return true;
+      return data;
     }
   } catch (error) {
     console.log(error);

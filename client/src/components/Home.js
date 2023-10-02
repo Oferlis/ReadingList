@@ -28,8 +28,13 @@ export const Home = () => {
     );
   };
 
+  const addListItem = async (link) => {
+    const data = await addLink(link);
+    const newList = sortItems([...list, data]);
+    setList(newList);
+  };
+
   const fetchLinkList = useCallback(async () => {
-    console.log("fetching");
     setIsLoading(true);
     setError(null);
 
@@ -77,7 +82,7 @@ export const Home = () => {
       <h2>You got {unreadLinksNum} unread link(s)</h2>
       <div className="container">
         <section>
-          <AddLink onAddLink={addLink} />
+          <AddLink onAddLink={addListItem} onFetchLinks={fetchLinkList} />
         </section>
       </div>
       <section className="items-list">{content}</section>

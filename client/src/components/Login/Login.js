@@ -25,7 +25,7 @@ export const Login = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           value={data.email}
           onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -33,7 +33,7 @@ export const Login = () => {
           id="email"
           placeholder="youremail@gmail.com"
         />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}

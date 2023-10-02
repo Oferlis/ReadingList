@@ -6,6 +6,7 @@ const LinkList = (props) => {
     <ul className="responsive-table">
       {props.links.map((link) => (
         <Link
+          key={Math.random()}
           id={link.id}
           name={link.name}
           link={link.link}

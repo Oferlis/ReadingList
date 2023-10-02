@@ -16,9 +16,8 @@ const Link = (props) => {
     props.onUpdate(!props.isRead, props.id);
   };
 
-  console.log(props);
   return (
-    <li className="link-item" key={props.id}>
+    <li className="link-item">
       <div>
         <input
           type="checkbox"

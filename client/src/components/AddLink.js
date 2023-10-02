@@ -1,22 +1,20 @@
 import React, { useRef } from "react";
 import "./AddLink.scss";
-import { addLink, getLinks } from "../api/api";
 
-function AddLink() {
+function AddLink(props) {
   const titleRef = useRef("");
   const linkRef = useRef("");
 
   function submitHandler(event) {
     event.preventDefault();
 
-    // could add validation here...
-
     const link = {
       name: titleRef.current.value,
       link: linkRef.current.value,
     };
 
-    addLink(link);
+    props.onAddLink(link);
+
     event.target.reset();
   }
 
@@ -34,7 +32,7 @@ function AddLink() {
         </div>
         <button type="submit">Add Link</button>
       </form>
-      <button onClick={getLinks} className="fetch-button">
+      <button onClick={props.onFetchLinks} className="fetch-button">
         Fetch Links
       </button>
     </>
