@@ -4,6 +4,7 @@ import LinkList from "./LinkList";
 import { addLink, getLinks, updateLink, deleteLink } from "../api/api";
 import { UserContext } from "../context/userContext";
 import sortItems from "../helpers/sorters";
+import SearchBar from "./SearchBar";
 
 export const Home = () => {
   const [list, setList] = useState([{ name: "No data yet..." }]);
@@ -95,6 +96,7 @@ export const Home = () => {
       <h1>READING LIST</h1>
       <h2>Hey {user.firstName} what's on your mind today?</h2>
       <h2>You got {unreadLinksNum} unread link(s)</h2>
+      <SearchBar />
       <div className="container">
         <section>
           <AddLink onAddLink={addListItem} onFetchLinks={fetchLinkList} />
